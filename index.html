@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc mừng 20/10 💐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+        }
+
+        #canvas3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none; /* allow clicks to pass through decorations/canvas */
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        #nameForm {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 60px 50px;
+            border-radius: 40px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 
+                        0 0 40px rgba(255, 105, 180, 0.3),
+                        inset 0 0 30px rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            animation: float 3s ease-in-out infinite;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+                z-index: 30;
+                pointer-events: auto;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.02); }
+        }
+
+        h1 {
+            background: linear-gradient(45deg, #ff6ec4, #ffeb3b, #7ee8fa, #ff6ec4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: gradientShift 3s ease infinite;
+            font-weight: bold;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            color: #fff;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 18px 25px;
+            font-size: 1.2em;
+            border: 3px solid transparent;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            outline: none;
+            transition: all 0.4s;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #ff6ec4;
+            box-shadow: 0 0 30px rgba(255, 110, 196, 0.6);
+            transform: scale(1.05);
+            background: #fff;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff6ec4, #ff0080);
+            color: white;
+            border: none;
+            padding: 18px 60px;
+            font-size: 1.3em;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.4s;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(255, 0, 128, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 0, 128, 0.7);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #celebration {
+            display: none;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            max-width: 95%;
+        }
+
+        .celebration-content {
+            animation: celebrationEntry 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes celebrationEntry {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(-180deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        #celebration h2 {
+            font-size: 4.5em;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #ff6ec4, #ffeb3b, #7ee8fa);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 2s ease infinite, textPop 2s ease-in-out infinite;
+        }
+
+        @keyframes textPop {
+            0%, 100% { transform: scale(1) rotateZ(0deg); }
+            50% { transform: scale(1.1) rotateZ(2deg); }
+        }
+
+        .message {
+            font-size: 1.8em;
+            max-width: 900px;
+            margin: 0 auto 50px;
+            line-height: 2;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: messageGlow 3s ease-in-out infinite;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            white-space: pre-line;
+            font-style: italic;
+        }
+
+        @keyframes messageGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 110, 196, 0.3); }
+            50% { box-shadow: 0 0 50px rgba(126, 232, 250, 0.5); }
+        }
+
+        .loading {
+            display: inline-block;
+            font-size: 1.5em;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .heart-emoji {
+            display: inline-block;
+            font-size: 3.5em;
+            animation: heartBeat 1.5s infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 110, 196, 0.8));
+            margin: 20px 10px;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.3) rotate(-10deg); }
+            75% { transform: scale(1.3) rotate(10deg); }
+        }
+
+        .flower-3d {
+            position: absolute;
+            animation: flower3DFly linear;
+            transform-style: preserve-3d;
+            pointer-events: none;
+        }
+
+        @keyframes flower3DFly {
+            0% {
+                transform: translate3d(var(--startX), var(--startY), 0) 
+                           rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translate3d(var(--endX), var(--endY), var(--endZ)) 
+                           rotateX(720deg) rotateY(720deg) rotateZ(720deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: particleMove 3s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes particleMove {
+            0% {
+                transform: translate3d(0, 0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate3d(var(--px), var(--py), var(--pz)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        #loginPanel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            z-index: 1002;
+            width: 400px;
+            max-width: 90%;
+            border: 2px solid rgba(255, 110, 196, 0.3);
+        }
+
+        #adminPanel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            max-width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 2px solid rgba(255, 110, 196, 0.3);
+        }
+
+        .visitor-item {
+            padding: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            transition: all 0.3s;
+        }
+
+        .visitor-item:hover {
+            background: rgba(255, 110, 196, 0.1);
+            transform: translateX(10px);
+        }
+
+        .close-admin {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 35px;
+            cursor: pointer;
+            color: #ff0080;
+            transition: all 0.3s;
+        }
+
+        .close-admin:hover {
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        .error-message {
+            color: #ff0080;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            #celebration h2 { font-size: 3em; }
+            .message { font-size: 1.4em; padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas3d"></canvas>
+
+    <div class="container">
+        <div id="nameForm">
+            <h1>💐 Chúc mừng 20/10 💐</h1>
+            <p class="subtitle">Ngày Phụ nữ Việt Nam</p>
+            <input type="text" id="nameInput" placeholder="Nhập tên bạn gái..." autocomplete="off">
+            <button onclick="startCelebration()" id="startBtn">🎉 Bắt đầu phép thuật 🎉</button>
+        </div>
+
+        <div id="celebration">
+            <div class="celebration-content">
+                <h2 id="greeting"></h2>
+                <div class="message" id="poemContent">
+                    <span class="loading">✨ Đang tạo bài thơ dành riêng cho bạn... ✨</span>
+                </div>
+                <div>
+                    <span class="heart-emoji">❤️</span>
+                    <span class="heart-emoji">💕</span>
+                    <span class="heart-emoji">💐</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loginPanel">
+        <span class="close-admin" onclick="closeLogin()">×</span>
+        <h2 style="color: #ff0080; margin-bottom: 25px;">🔒 Đăng nhập Admin</h2>
+        <input type="password" id="adminPassword" placeholder="Nhập mật khẩu...">
+        <button onclick="checkAdminPassword()">Đăng nhập</button>
+        <div class="error-message" id="loginError"></div>
+    </div>
+
+    <div id="adminPanel">
+        <span class="close-admin" onclick="closeAdmin()">×</span>
+        <h2 style="color: #ff0080; margin-bottom: 25px;">📊 Danh sách khách viếng thăm</h2>
+        <div id="visitorList"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const CONFIG = {
+            GEMINI_API_KEY: "AIzaSyBBINJByOyZSbdkEz4Q0Y_NoTtO7jK_eps",
+            ADMIN_PASSWORD: "admin2010"
+        };
+
+        let keysPressed = {};
+        document.addEventListener('keydown', (e) => {
+            keysPressed[e.key] = true;
+            if (keysPressed['Control'] && keysPressed['Shift'] && (e.key === 'A' || e.key === 'a')) {
+                document.getElementById('loginPanel').style.display = 'block';
+            }
+        });
+        document.addEventListener('keyup', (e) => {
+            delete keysPressed[e.key];
+        });
+
+        document.getElementById('adminPassword').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkAdminPassword();
+        });
+
+        function checkAdminPassword() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === CONFIG.ADMIN_PASSWORD) {
+                document.getElementById('loginPanel').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                updateVisitorList();
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('loginError').textContent = '';
+            } else {
+                document.getElementById('loginError').textContent = '❌ Sai mật khẩu!';
+            }
+        }
+
+        function closeLogin() {
+            document.getElementById('loginPanel').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('loginError').textContent = '';
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminPanel').style.display = 'none';
+        }
+
+        let scene, camera, renderer, stars = [];
+        
+        function initThreeJS() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 50;
+
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: document.getElementById('canvas3d'),
+                alpha: true,
+                antialias: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            const starGeometry = new THREE.BufferGeometry();
+            const starPositions = [];
+            for (let i = 0; i < 1000; i++) {
+                starPositions.push(
+                    (Math.random() - 0.5) * 200,
+                    (Math.random() - 0.5) * 200,
+                    (Math.random() - 0.5) * 200
+                );
+            }
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starPositions, 3));
+            const starMaterial = new THREE.PointsMaterial({ 
+                color: 0xffffff, 
+                size: 0.5,
+                transparent: true,
+                opacity: 0.8
+            });
+            const starField = new THREE.Points(starGeometry, starMaterial);
+            scene.add(starField);
+            stars.push(starField);
+
+            for (let i = 0; i < 50; i++) {
+                const geometry = new THREE.SphereGeometry(0.5, 8, 8);
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: Math.random() > 0.5 ? 0xff6ec4 : 0x7ee8fa,
+                    transparent: true,
+                    opacity: 0.6
+                });
+                const particle = new THREE.Mesh(geometry, material);
+                particle.position.set(
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100
+                );
+                scene.add(particle);
+                stars.push(particle);
+            }
+
+            animate3D();
+        }
+
+        function animate3D() {
+            requestAnimationFrame(animate3D);
+            stars.forEach((star, index) => {
+                star.rotation.x += 0.001;
+                star.rotation.y += 0.001;
+                if (star.geometry && star.geometry.type === 'SphereGeometry') {
+                    star.position.y += Math.sin(Date.now() * 0.001 + index) * 0.02;
+                    star.position.x += Math.cos(Date.now() * 0.001 + index) * 0.02;
+                }
+            });
+            renderer.render(scene, camera);
+        }
+
+        initThreeJS();
+
+        let visitors = JSON.parse(localStorage.getItem('visitors2010') || '[]');
+
+        async function generatePoem(name) {
+            const apiKey = CONFIG.GEMINI_API_KEY;
+            
+            if (!apiKey || apiKey === "AIzaSyBBINJByOyZSbdkEz4Q0Y_NoTtO7jK_eps") {
+                return `Tặng ${name} - người phụ nữ tuyệt vời ✨\n\nHoa tươi điểm tô ngày 20/10\nGửi em lời chúc thật nhiều niềm vui\nXinh đẹp, duyên dàng như hoa nở\nHạnh phúc ngập tràn trong cuộc đời\n\n💐 Chúc em luôn rạng ngời! 💐`;
+            }
+
+            const prompt = `Viết một bài thơ ngắn 4-6 câu chúc mừng ngày Phụ nữ Việt Nam 20/10 dành tặng "${name}". Thơ cần ngắn gọn, dễ thương, lãng mạn, có vần điệu tự nhiên. Chỉ trả về nội dung bài thơ.`;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+
+                if (!response.ok) throw new Error('API failed');
+                const data = await response.json();
+                const poem = data.candidates[0].content.parts[0].text;
+                return `Tặng ${name} ✨\n\n${poem}`;
+            } catch (error) {
+                console.error('Error:', error);
+                return `Tặng ${name} - người phụ nữ tuyệt vời ✨\n\nHoa tươi điểm tô ngày 20/10\nGửi em lời chúc thật nhiều niềm vui\nXinh đẹp, duyên dàng như hoa nở\nHạnh phúc ngập tràn trong cuộc đời\n\n💐 Chúc em luôn rạng ngời! 💐`;
+            }
+        }
+
+        async function startCelebration() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (!name) {
+                alert('Vui lòng nhập tên! 😊');
+                return;
+            }
+
+            const btn = document.getElementById('startBtn');
+            btn.disabled = true;
+            btn.textContent = '✨ Đang tạo phép thuật...';
+
+            visitors.push({
+                name: name,
+                time: new Date().toLocaleString('vi-VN'),
+                timestamp: Date.now()
+            });
+            localStorage.setItem('visitors2010', JSON.stringify(visitors));
+
+            document.getElementById('nameForm').style.display = 'none';
+            document.getElementById('celebration').style.display = 'block';
+            document.getElementById('greeting').textContent = `✨ ${name} ✨`;
+
+            createFlowerExplosion();
+            createParticles();
+
+            const poem = await generatePoem(name);
+            document.getElementById('poemContent').textContent = poem;
+        }
+
+        function createFlowerExplosion() {
+            const flowers = ['🌸', '🌺', '🌼', '🌻', '🌷', '🌹', '💐'];
+            
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const flower = document.createElement('div');
+                    flower.className = 'flower-3d';
+                    flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                    flower.style.fontSize = (30 + Math.random() * 30) + 'px';
+                    
+                    const centerX = window.innerWidth / 2;
+                    const centerY = window.innerHeight / 2;
+                    const angle = (Math.random() * Math.PI * 2);
+                    const distance = 200 + Math.random() * 400;
+                    
+                    flower.style.setProperty('--startX', centerX + 'px');
+                    flower.style.setProperty('--startY', centerY + 'px');
+                    flower.style.setProperty('--endX', (centerX + Math.cos(angle) * distance) + 'px');
+                    flower.style.setProperty('--endY', (centerY + Math.sin(angle) * distance) + 'px');
+                    flower.style.setProperty('--endZ', (Math.random() * 200 - 100) + 'px');
+                    flower.style.animationDuration = (2 + Math.random() * 2) + 's';
+                    flower.style.left = '0';
+                    flower.style.top = '0';
+                    
+                    document.body.appendChild(flower);
+                    setTimeout(() => flower.remove(), 4500);
+                }, i * 30);
+            }
+
+            setInterval(() => {
+                for (let i = 0; i < 10; i++) {
+                    const flower = document.createElement('div');
+                    flower.className = 'flower-3d';
+                    flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                    flower.style.fontSize = (25 + Math.random() * 25) + 'px';
+                    
+                    const startX = Math.random() * window.innerWidth;
+                    const startY = Math.random() * window.innerHeight;
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 150 + Math.random() * 200;
+                    
+                    flower.style.setProperty('--startX', startX + 'px');
+                    flower.style.setProperty('--startY', startY + 'px');
+                    flower.style.setProperty('--endX', (startX + Math.cos(angle) * distance) + 'px');
+                    flower.style.setProperty('--endY', (startY + Math.sin(angle) * distance) + 'px');
+                    flower.style.setProperty('--endZ', (Math.random() * 150 - 75) + 'px');
+                    flower.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+                    flower.style.left = '0';
+                    flower.style.top = '0';
+                    
+                    document.body.appendChild(flower);
+                    setTimeout(() => flower.remove(), 3500);
+                }
+            }, 800);
+        }
+
+        function createParticles() {
+            setInterval(() => {
+                const colors = ['#ff6ec4', '#ffeb3b', '#7ee8fa', '#ff0080', '#fff'];
+                for (let i = 0; i < 15; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    particle.style.setProperty('--px', (Math.random() - 0.5) * 400 + 'px');
+                    particle.style.setProperty('--py', (Math.random() - 0.5) * 400 + 'px');
+                    particle.style.setProperty('--pz', (Math.random() - 0.5) * 400 + 'px');
+                    
+                    document.body.appendChild(particle);
+                    setTimeout(() => particle.remove(), 3000);
+                }
+            }, 500);
+        }
+
+        function updateVisitorList() {
+            const list = document.getElementById('visitorList');
+            if (visitors.length === 0) {
+                list.innerHTML = '<p style="color: #999; text-align: center; padding: 20px;">Chưa có ai ghé thăm</p>';
+                return;
+            }
+
+            list.innerHTML = '<div style="margin-bottom: 20px; color: #666;">Tổng số khách: <strong style="color: #ff0080;">' + visitors.length + '</strong></div>' +
+                visitors.map((v, i) => `
+                <div class="visitor-item">
+                    <span><strong>${i + 1}. ${v.name}</strong></span>
+                    <span style="color: #666;">${v.time}</span>
+                </div>
+            `).reverse().join('');
+        }
+
+        document.getElementById('nameInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') startCelebration();
+        });
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
